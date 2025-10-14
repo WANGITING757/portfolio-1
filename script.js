@@ -21,3 +21,9 @@ function addTask() {
 
   input.value = "";
 }
+// 小互動效果：點擊作品卡時在 console 顯示記錄
+document.querySelectorAll('.project-link').forEach(link => {
+  link.addEventListener('click', () => {
+    console.log('作品ページを開きました:', link.href);
+  });
+});
