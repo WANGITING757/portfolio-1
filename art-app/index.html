@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Illustration Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="site">
+    <header class="hero">
+      <h1>ギャラリー</h1>
+      <p class="lead">厳選ギャラリー｜クリックで拡大</p>
+    </header>
+
+    <section class="controls">
+      <div class="tags">
+        <button data-filter="すべて" class="active">すべて</button>
+        <button data-filter="ファンアート">ファンアート</button>
+        <button data-filter="オリジナル">オリジナル</button>
+
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery" aria-live="polite">
+      <!-- 縮圖由 script.js 動態產生 -->
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+      <button class="close" aria-label="閉じる (Esc)">✕</button>
+      <button class="nav prev" aria-label="前の画像 (←)">‹</button>
+      <figure class="lb-content">
+        <img alt="" />
+        <figcaption>
+          <h2 class="lb-title"></h2>
+          <p class="lb-meta"></p>
+          <p class="lb-desc"></p>
+          <a class="download" href="#" download>ダウンロード</a>
+        </figcaption>
+      </figure>
+      <button class="nav next" aria-label="次の画像 (→)">›</button>
+    </div>
+
+    <footer class="foot">
+      <small>© 2025 WANG ITING — Portfolio</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

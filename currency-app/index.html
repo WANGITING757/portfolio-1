@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>💰 通貨換算ツール</h1>
+    <div class="converter">
+      <input type="number" id="amount" placeholder="金額を入力" />
+      <div class="selectors">
+        <select id="from"></select>
+        <span>➡</span>
+        <select id="to"></select>
+      </div>
+      <button id="convert">換算する</button>
+      <p id="result"></p>
+      <small id="updated"></small>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,90 +1,92 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ポートフォリオ | 王依婷</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | WANG ITING</title>
+
+  <!-- 先載入字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One&display=swap" rel="stylesheet">
+
+  <!-- 再載入 CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- ===== Header ===== -->
-  <header>
-    <h1>王依婷 - Webポートフォリオ</h1>
-    <p>Web制作・デザイン｜IT業界へ転職</p>
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="logo">WANG ITING</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- ===== Navigation（可省略） ===== -->
-  <nav>
-    <a href="#about">自己紹介</a>
-    <a href="#projects">学習・転職目標</a>
-    <a href="#contact">お問い合わせ</a>
-  </nav>
+  <!-- Hero 區 -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Web制作を通して、可能性を形に。</h1>
+      <p>ポートフォリオサイトへようこそ。</p>
+    </div>
+  </section>
 
-  <!-- ===== Main ===== -->
-  <main>
-  <!-- 自己紹介 -->
-  <section id="about">
-    <h2>自己紹介</h2>
+  <!-- About 區 -->
+  <section id="about" class="about section">
+    <h2>About Me</h2>
     <p>
-      広告業界での経験を経て、IT業界へのキャリアチェンジを目指しています。<br>
-      現在はHTML、CSS、JavaScriptなどWeb制作の基礎を学習中です。<br>
-      前職を通じて「見る人に伝わるデザイン」「使いやすいWebサイト」を作ることに興味があります。
+      IT業界へキャリアチェンジを目指し、Web制作やプログラミングを中心に学習中です。<br>
+      このサイトでは、学習の成果と制作した作品を紹介しています。
     </p>
   </section>
 
-  <!-- 学習・目標 -->
-  <section id="goal">
-    <h2>学習・転職目標</h2>
-    <p>
-      ・Web制作やフロントエンド分野に関わる職種を目指しています。<br>
-      ・実務に活かせるよう、独学を継続中。<br>
-      ・今後はポートフォリオサイトや簡単なアプリ開発にも挑戦予定です。
-    </p>
-  </section>
-  
-<!-- ========================= -->
-<!-- 🌟 作品集區塊 (Works) -->
-<!-- ========================= -->
+  <!-- Works 區 -->
+  <section id="works" class="works section">
+    <h2>Works</h2>
+    <div class="works-grid">
 
-<section id="works">
-  <h2 class="section-title">My Works</h2>
-  <p class="section-desc">これまで作成したWebアプリ・Webページの一覧です。</p>
+      <!-- 天氣 App -->
+      <div class="work-card fade-in">
+        <h3>天気アプリ</h3>
+        <p>APIを利用して天気情報を表示するWebアプリ。</p>
+        <a href="https://wangiting757.github.io/portfolio-1/weather-app/index.html" target="_blank" class="btn">作品を見る</a>
+      </div>
 
-  <div class="projects-container">
-    <!-- Weather App -->
-    <div class="project-card">
-      <h3>🌤️ 天気検索アプリ</h3>
-      <p>都市名を入力すると、現在の気温と天気を表示します。JavaScriptでAPIを利用しています。</p>
-      <a href="./weather-app/index.html" target="_blank" class="project-link">
-        → アプリを開く
-      </a>
-    </div>
-
-    <!-- 他 -->
-    <!--
-    <div class="project-card">
-      <h3>📝 Todoリストアプリ</h3>
-      <p>Reactで作成したシンプルなタスク管理アプリ。</p>
-      <a href="./todo-app/index.html" target="_blank" class="project-link">→ アプリを開く</a>
-    </div>
-    -->
+      <!-- 匯率換算器 -->
+  <div class="work-card fade-in">
+    <h3>通貨換算アプリ</h3>
+    <p>為替APIを使って通貨を換算できるシンプルなWebアプリ。</p>
+    <a href="https://wangiting757.github.io/portfolio-1/currency-app/index.html" target="_blank" class="btn">作品を見る</a>
   </div>
-</section>
 
+  <!-- 画廊アプリ -->
+  <div class="work-card fade-in">
+    <h3>ギャラリーアプリ</h3>
+    <p>画像をスライドショー形式で閲覧できるWebアプリ。</p>
+    <a href="https://wangiting757.github.io/portfolio-1/art-app/index.html" target="_blank" class="btn">作品を見る</a>
+  </div>
 
-  <!-- お問い合わせ -->
-  <section id="contact">
-    <h2>お問い合わせ</h2>
-    <p>ご連絡は <a href="mailto:yitingwang757@gmail.com">yitingwang757@gmail.com</a> までお願いします。</p>
-    <p>GitHub: <a href="https://github.com/WANGITING757" target="_blank">https://github.com/WANGITING757</a></p>
+    </div>
   </section>
-</main>
 
+  <!-- Contact 區 -->
+  <section id="contact" class="contact section">
+    <h2>Contact</h2>
+    <p>ご覧いただきありがとうございます。<br>
+       GitHubやメールからご連絡ください。</p>
+    <ul>
+      <li><a href="https://github.com/wangiting757" target="_blank">GitHub</a></li>
+      <li><a href="mailto:your.email@example.com">Email</a></li>
+    </ul>
+  </section>
 
-  <!-- ===== Footer ===== -->
-  <footer>
-    <p>© 2025 王依婷 | Portfolio</p>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 WANG ITING. All rights reserved.</p>
   </footer>
 </body>
 </html>
