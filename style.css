@@ -7,7 +7,6 @@ body {
   line-height: 1.8;
 }
 
-
 /* 導覽列 */
 .navbar {
   display: flex;
@@ -75,6 +74,149 @@ body {
   font-size: 1.8rem;
   color: #594a3c;
   margin-bottom: 1.5rem;
+}
+
+/* 🎨 UI/UX使用處1: Profile卡片設計 - 視覺階層與留白 */
+.profile-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  text-align: left;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a67b5b, #594a3c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.profile-info h3 {
+  color: #594a3c;
+  margin-bottom: 0.5rem;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.detail-item strong {
+  color: #7a6f65;
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+/* 🎨 UI/UX使用處2: Timeline設計 - 視覺化時間流程 */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #a67b5b, #e5d4c1);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -0.5rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background: #a67b5b;
+  border: 3px solid #fdfaf6;
+  border-radius: 50%;
+}
+
+.timeline-date {
+  color: #a67b5b;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-title {
+  font-weight: 600;
+  color: #594a3c;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-desc {
+  color: #7a6f65;
+  font-size: 0.95rem;
+}
+
+/* 🎨 UI/UX使用處3: スキルバー - 視覺化能力レベル */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.skill-item {
+  margin-bottom: 1.2rem;
+}
+
+.skill-name {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: #594a3c;
+}
+
+.skill-bar {
+  height: 8px;
+  background: #e5d4c1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(to right, #a67b5b, #d4a574);
+  border-radius: 10px;
+  transition: width 1s ease;
 }
 
 /* Works 區 */
@@ -176,5 +318,14 @@ body {
 
   .section {
     padding: 3rem 1rem;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .timeline {
+    padding-left: 1.5rem;
   }
 }

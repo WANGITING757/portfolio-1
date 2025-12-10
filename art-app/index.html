@@ -1,27 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Illustration Gallery</title>
+  <title>ギャラリーアプリ | WANG ITING</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="site">
     <header class="hero">
       <h1>ギャラリー</h1>
-      <p class="lead">厳選ギャラリー｜クリックで拡大</p>
+      <p class="lead">厳選ギャラリー｜クリックで拡大・編集</p>
+      <a href="../index.html" class="back-btn">← ポートフォリオに戻る</a>
     </header>
 
+    <!-- アップロードエリア -->
+    <section class="upload-section">
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📤</div>
+        <p>クリックまたはドラッグ&ドロップで画像を追加</p>
+        <input type="file" id="fileInput" accept="image/*" multiple>
+        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+          ファイルを選択
+        </button>
+      </div>
+    </section>
+
+    <!-- フィルター -->
     <section class="controls">
       <div class="tags">
         <button data-filter="すべて" class="active">すべて</button>
         <button data-filter="ファンアート">ファンアート</button>
         <button data-filter="オリジナル">オリジナル</button>
-
       </div>
     </section>
 
+    <!-- ギャラリーグリッド -->
     <section id="gallery" class="gallery" aria-live="polite">
       <!-- 縮圖由 script.js 動態產生 -->
     </section>
@@ -40,6 +54,36 @@
         </figcaption>
       </figure>
       <button class="nav next" aria-label="次の画像 (→)">›</button>
+    </div>
+
+    <!-- 編集モーダル -->
+    <div id="editModal" class="edit-modal">
+      <div class="edit-form">
+        <h3>作品情報を編集</h3>
+        <div class="form-group">
+          <label for="editTitle">タイトル</label>
+          <input type="text" id="editTitle" required>
+        </div>
+        <div class="form-group">
+          <label for="editTools">使用ツール</label>
+          <input type="text" id="editTools" placeholder="例: MediBang Paint / Photoshop">
+        </div>
+        <div class="form-group">
+          <label for="editTag">タグ</label>
+          <select id="editTag">
+            <option value="ファンアート">ファンアート</option>
+            <option value="オリジナル">オリジナル</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="editDesc">説明</label>
+          <textarea id="editDesc" rows="4"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn-secondary" onclick="closeEditModal()">キャンセル</button>
+          <button class="btn-primary" onclick="saveEdit()">保存</button>
+        </div>
+      </div>
     </div>
 
     <footer class="foot">

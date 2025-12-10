@@ -15,57 +15,471 @@ main {
 footer {
   text-align: center;
   padding: 10px;
-  background-color: #eee;
+  background-color: #f6f7fb;
 }
 
 :root{
-  --bg:#f6f7fb; --card:#fff; --accent:#4d90fe; --muted:#666;
-}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter, "Noto Sans TC", system-ui, sans-serif;background:var(--bg);color:#222}
-.site{max-width:1100px;margin:32px auto;padding:0 16px}
-.hero{text-align:center;margin-bottom:18px}
-.hero h1{margin:0;font-size:1.8rem;color:var(--accent)}
-.lead{color:var(--muted);margin-top:6px}
-
-.controls{display:flex;justify-content:center;margin-bottom:12px}
-.tags button{background:transparent;border:1px solid transparent;padding:8px 12px;margin:0 6px;border-radius:999px;cursor:pointer}
-.tags button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:14px;
-  align-items:start;
+  --bg:#f6f7fb; 
+  --card:#fff; 
+  --accent:#a67b5b; 
+  --muted:#7a6f65;
 }
 
-/* card */
-.card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(16,24,40,0.06);cursor:pointer;transition:transform .18s,box-shadow .18s}
-.card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(16,24,40,0.12)}
-.thumb{display:block;width:100%;height:0;padding-bottom:75%;background-size:cover;background-position:center}
-.card-body{padding:12px}
-.title{font-weight:600;margin:0 0 6px 0;font-size:0.98rem}
-.meta{font-size:0.85rem;color:var(--muted);margin:0}
+* { box-sizing: border-box; }
 
-/* lightbox */
-.lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,12,16,0.6);z-index:1200;padding:24px}
-.lightbox[aria-hidden="false"]{display:flex}
-.lb-content{max-width:900px;max-height:85vh;width:100%;display:flex;gap:20px;align-items:flex-start;background:transparent}
-.lb-content img{max-width:60%;max-height:80vh;border-radius:8px;object-fit:contain}
-.lb-content figcaption{width:40%;color:#fff}
-.lb-title{margin:0 0 8px 0;font-size:1.2rem}
-.lb-meta{font-size:0.9rem;color:#dfe9ff;margin-bottom:8px}
-.lb-desc{color:#e7f0ff;line-height:1.4}
-.download{display:inline-block;margin-top:12px;padding:8px 12px;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none}
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Klee One', 'Noto Sans JP', system-ui, sans-serif;
+  background: var(--bg);
+  color: #222;
+}
 
-.close,.nav{position:absolute;top:18px;background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer;padding:8px}
-.close{right:18px}
-.nav.prev{left:18px;top:50% ;transform:translateY(-50%)}
-.nav.next{right:18px;top:50% ;transform:translateY(-50%)}
+.site {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #594a3c;
+}
+
+.lead {
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* 返回ボタン */
+.back-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background: #8b5e3c;
+}
+
+/* 🎨 UI/UX使用處1: アップロードエリア - 直感的な操作 */
+.upload-section {
+  margin-bottom: 2rem;
+}
+
+.upload-area {
+  border: 2px dashed var(--accent);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+}
+
+.upload-area:hover {
+  background: #fdfaf6;
+  border-color: #8b5e3c;
+  transform: scale(1.01);
+}
+
+.upload-area.dragover {
+  background: #f9f4ef;
+  border-color: #8b5e3c;
+  transform: scale(1.02);
+}
+
+.upload-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#fileInput {
+  display: none;
+}
+
+.upload-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.upload-btn:hover {
+  background: #8b5e3c;
+}
+
+/* フィルターコントロール */
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.tags button {
+  background: transparent;
+  border: 2px solid var(--accent);
+  padding: 8px 16px;
+  margin: 0 6px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--accent);
+  transition: all 0.3s;
+}
+
+.tags button:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.tags button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ギャラリーグリッド */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+/* 🎨 UI/UX使用處2: カードホバーエフェクト - インタラクティブ反饋 */
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(16,24,40,0.12);
+}
+
+.thumb {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-body {
+  padding: 12px;
+}
+
+.title {
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  font-size: 0.98rem;
+  color: #594a3c;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* 🎨 UI/UX使用處3: 編集・削除ボタン - ホバー時表示 */
+.card-actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.3rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover .card-actions {
+  opacity: 1;
+}
+
+.icon-btn {
+  background: rgba(255,255,255,0.95);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+}
+
+.icon-btn.edit:hover {
+  background: #4d90fe;
+  color: white;
+}
+
+.icon-btn.delete:hover {
+  background: #ff6b6b;
+  color: white;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,12,16,0.85);
+  z-index: 1200;
+  padding: 24px;
+}
+
+.lightbox[aria-hidden="false"] {
+  display: flex;
+}
+
+.lb-content {
+  max-width: 900px;
+  max-height: 85vh;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  background: transparent;
+}
+
+.lb-content img {
+  max-width: 60%;
+  max-height: 80vh;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.lb-content figcaption {
+  width: 40%;
+  color: #fff;
+}
+
+.lb-title {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+}
+
+.lb-meta {
+  font-size: 0.9rem;
+  color: #dfe9ff;
+  margin-bottom: 8px;
+}
+
+.lb-desc {
+  color: #e7f0ff;
+  line-height: 1.4;
+}
+
+.download {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.download:hover {
+  background: #8b5e3c;
+}
+
+.close, .nav {
+  position: absolute;
+  background: rgba(255,255,255,0.9);
+  border: 0;
+  color: #333;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.close:hover, .nav:hover {
+  background: white;
+}
+
+.close {
+  top: 18px;
+  right: 18px;
+}
+
+.nav.prev {
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav.next {
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 🎨 UI/UX使用處4: 編集モーダル - モーダルデザイン */
+.edit-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 1300;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.edit-modal.show {
+  display: flex;
+}
+
+.edit-form {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.edit-form h3 {
+  color: #594a3c;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  color: #594a3c;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 2px solid #e5d4c1;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.btn-primary {
+  padding: 0.6rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background: #8b5e3c;
+}
+
+.btn-secondary {
+  padding: 0.6rem 1.5rem;
+  background: #e5d4c1;
+  color: #594a3c;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #d4c3b0;
+}
 
 /* responsive */
 @media(max-width:700px){
-  .lb-content{flex-direction:column;align-items:center}
-  .lb-content img{max-width:100%;width:100%}
-  .lb-content figcaption{width:100%}
+  .lb-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .lb-content img {
+    max-width: 100%;
+    width: 100%;
+  }
+  .lb-content figcaption {
+    width: 100%;
+  }
+  
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .edit-form {
+    padding: 1.5rem;
+  }
 }
